@@ -21,8 +21,17 @@
             <p>{{ description }}</p>
             <p v-if="inStock">In Stock</p>
             <p v-else>Out of Stock</p>
-            <p v-if="onSale">On Sale</p>
+            <span v-if="onSale">On Sale</span>
             <a :href="link">More products like this</a>
+            <ul>
+                <li v-for="detail in details">{{ detail }}</li>
+            </ul>
+            <div>
+                <p>Sizes:</p>
+                <ul>
+                    <li v-for="size in sizes">{{ size }}</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
