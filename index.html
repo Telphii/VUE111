@@ -20,7 +20,7 @@
             <h1>{{ product }}</h1>
             <p>{{ description }}</p>
             <p v-if="inStock">In Stock</p>
-            <p v-else>Out of Stock</p>
+            <p v-else :class="{ outOfStock: !inStock }">Out of Stock</p>
             <span v-if="onSale">On Sale</span>
             <a :href="link">More products like this</a>
             <ul>
@@ -31,6 +31,19 @@
                 <ul>
                     <li v-for="size in sizes">{{ size }}</li>
                 </ul>
+            </div>
+            <div class="cart">
+                <p>Cart({{ cart }})</p>
+                <button @click="addToCart" :disabled="!inStock" :class="{ disabledButton: !inStock }">Add to cart</button>
+                <button @click="removeFromCart">Remove from cart</button>
+            </div>
+            <div
+                    class="color-box"
+                    v-for="variant in variants"
+                    :key="variant.variantId"
+                    :style="{ backgroundColor: variant.variantColor }"
+                    @mouseover="updateProduct(variant.variantImage)"
+            >
             </div>
         </div>
     </div>
